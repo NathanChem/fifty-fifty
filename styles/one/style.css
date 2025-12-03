@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 1.6;
+  font-family: "Quicksand", sans-serif;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.counter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  border: none;
+  border-radius: 15px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 3rem;
+  width: 75px;
+  height: 75px;
+}
+
+button:active {
+  transform: scale(0.95);
+}

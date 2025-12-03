@@ -1,0 +1,33 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 1.6;
+  font-family: "Quicksand", sans-serif;
+}
+
+header {
+  text-align: center;
+}
+
+section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  margin-top: 20px;
+}
+li {
+  text-align: left;
+  margin: 10px 0;
+}
+
+a {
+  font-weight: 800;
+  text-decoration: none;
+  color: #333;
+}
