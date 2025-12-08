@@ -20,6 +20,10 @@ section {
 ul {
   list-style-type: none;
   margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 100%;
 }
 li {
   text-align: left;

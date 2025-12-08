@@ -4,6 +4,7 @@
   box-sizing: border-box;
   line-height: 1.6;
   font-family: "Quicksand", sans-serif;
+  user-select: none;
 }
 
 header {
@@ -40,6 +41,10 @@ button {
   font-size: 3rem;
   width: 75px;
   height: 75px;
+}
+
+.wbutton {
+  width: 150px;
 }
 
 button:active {
