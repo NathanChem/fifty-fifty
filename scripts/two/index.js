@@ -63,7 +63,7 @@ function startTimer() {
       // Sets the timer display to "0.00s".
       timerDisplay.textContent = "0.00s";
       // Calculates the final CPS score.
-      const finalCps = (count / initialTime).toFixed(2);
+      const finalCps = Math.floor(count / initialTime);
       // Displays the final CPS score.
       clickerCountDisplay.textContent = `${finalCps} CPS`;
     }
