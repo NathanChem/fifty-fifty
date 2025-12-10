@@ -24,6 +24,7 @@ ul {
   justify-content: space-between;
   flex-wrap: wrap;
   width: 100%;
+  columns: 3;
 }
 li {
   text-align: left;

@@ -1,13 +1,13 @@
 // Selects the main clickable button from the HTML document.
-const clicker = document.querySelector("#clicker");
+const CLICKER = document.querySelector("#clicker");
 // Selects the text element inside the clicker button to display counts or messages.
-const clickerCountDisplay = document.querySelector("#clicker-text");
+const CLICKER_COUNT_DISPLAY = document.querySelector("#clicker-text");
 // Selects the reset button from the HTML document.
-const resetButton = document.querySelector("#reset");
+const RESET_BUTTON = document.querySelector("#reset");
 // Selects the dropdown menu for choosing the timer duration.
-const timerSelect = document.querySelector("#timer-select");
+const TIMER_SELECT = document.querySelector("#timer-select");
 // Selects the element where the timer countdown is displayed.
-const timerDisplay = document.querySelector("#timer-display");
+const TIMER_DISPLAY = document.querySelector("#timer-display");
 
 // Initializes the click count to 0.
 let count = 0;
@@ -29,7 +29,7 @@ let clickTimestamps = [];
 // A function to update the initial time based on the dropdown selection.
 function updateInitialTime() {
   // Gets the currently selected value from the timer dropdown.
-  const selectedValue = timerSelect.value;
+  const selectedValue = TIMER_SELECT.value;
   // Checks if the selected value is not "live".
   if (selectedValue !== "live") {
     // If it's a number, parse it as an integer and set it as the initial time.
@@ -54,18 +54,18 @@ function startTimer() {
     // Checks if there is still time left.
     if (timeLeft > 0) {
       // Updates the timer display with the remaining time, formatted to two decimal places.
-      timerDisplay.textContent = timeLeft.toFixed(2) + "s";
+      TIMER_DISPLAY.textContent = timeLeft.toFixed(2) + "s";
     } else {
       // If time is up, stops the timer interval.
       clearInterval(timerInterval);
       // Disables the clicker button.
-      clicker.disabled = true;
+      CLICKER.disabled = true;
       // Sets the timer display to "0.00s".
-      timerDisplay.textContent = "0.00s";
+      TIMER_DISPLAY.textContent = "0.00s";
       // Calculates the final CPS score.
       const finalCps = Math.floor(count / initialTime);
       // Displays the final CPS score.
-      clickerCountDisplay.textContent = `${finalCps} CPS`;
+      CLICKER_COUNT_DISPLAY.textContent = `${finalCps} CPS`;
     }
   }, 10);
 }
@@ -100,7 +100,7 @@ function startLiveCps() {
         : 0;
 
     // Displays the calculated live CPS.
-    clickerCountDisplay.textContent = `${cps} CPS`;
+    CLICKER_COUNT_DISPLAY.textContent = `${cps} CPS`;
 
     // If no clicks in the last 2 seconds, reset the test
     // If the user stops clicking for 2 seconds, reset the test automatically.
@@ -127,32 +127,32 @@ function resetTest() {
   // Resets the timer started flag to false.
   timerStarted = false;
   // Re-enables the clicker button.
-  clicker.disabled = false;
+  CLICKER.disabled = false;
   // Resets the main display text.
-  clickerCountDisplay.textContent = "Click to start";
+  CLICKER_COUNT_DISPLAY.textContent = "Click to start";
 
   // Checks if the current mode is "live".
-  if (timerSelect.value === "live") {
+  if (TIMER_SELECT.value === "live") {
     // If so, sets the timer display to "Live".
-    timerDisplay.textContent = "Live";
+    TIMER_DISPLAY.textContent = "Live";
   } else {
     // Otherwise, displays the selected time duration.
-    timerDisplay.textContent = `${initialTime.toFixed(2)}s`;
+    TIMER_DISPLAY.textContent = `${initialTime.toFixed(2)}s`;
   }
 }
 
 // When the timer duration is changed, the resetTest function will execute.
-timerSelect.addEventListener("change", resetTest);
+TIMER_SELECT.addEventListener("change", resetTest);
 // When the reset button is clicked, the resetTest function will execute.
-resetButton.addEventListener("click", resetTest);
+RESET_BUTTON.addEventListener("click", resetTest);
 
 // Calls the reset function once to initialize the page on load.
 resetTest();
 
 // When the clicker button is clicked, the following function will execute.
-clicker.addEventListener("click", () => {
+CLICKER.addEventListener("click", () => {
   // If the clicker is disabled, do nothing.
-  if (clicker.disabled) {
+  if (CLICKER.disabled) {
     return;
   }
 
@@ -166,7 +166,7 @@ clicker.addEventListener("click", () => {
     // Records the start time on the very first click.
     startTime = Date.now(); // Set start time for all modes
     // Checks if the selected mode is "live".
-    if (timerSelect.value === "live") {
+    if (TIMER_SELECT.value === "live") {
       // Starts the live CPS calculation.
       startLiveCps();
     } else {
@@ -176,12 +176,12 @@ clicker.addEventListener("click", () => {
   }
 
   // If in "live" mode, add the current timestamp to the array.
-  if (timerSelect.value === "live") {
+  if (TIMER_SELECT.value === "live") {
     clickTimestamps.push(Date.now());
   }
 
   // If not in "live" mode, update the display with the current click count.
-  if (timerSelect.value !== "live") {
-    clickerCountDisplay.textContent = count;
+  if (TIMER_SELECT.value !== "live") {
+    CLICKER_COUNT_DISPLAY.textContent = count;
   }
 });

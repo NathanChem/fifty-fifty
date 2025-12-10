@@ -1,13 +1,13 @@
 // Selects the calculator's display screen from the HTML.
-const display = document.querySelector("#display");
+const DISPLAY = document.querySelector("#display");
 // Selects all buttons within the calculator.
-const buttons = document.querySelectorAll(".btn");
+const BUTTONS = document.querySelectorAll(".btn");
 
 // Stores the first number in a calculation, the operator, and if we are awaiting the next value.
 let firstVal = null, op = null, awaitingNext = false;
 
 // An object that holds the functions for each mathematical operation.
-const calculate = {
+const CALCULATE = {
   "/": (a, b) => {
     if (b === 0) {
       return "Error";
@@ -24,11 +24,11 @@ const calculate = {
 const sendNum = (num) => {
   // If we are waiting for the second number, clear the display first.
   if (awaitingNext) {
-    display.value = num;
+    DISPLAY.value = num;
     awaitingNext = false;
   } else {
     // If the current value is '0', replace it; otherwise, append the new number.
-    display.value = display.value === "0" ? num : display.value + num;
+    DISPLAY.value = DISPLAY.value === "0" ? num : DISPLAY.value + num;
   }
 };
 
@@ -37,21 +37,21 @@ const addDecimal = () => {
   // If we are waiting for the next value, do nothing.
   if (awaitingNext) return;
   // If the display does not already include a decimal point, add one.
-  if (!display.value.includes(".")) {
-    display.value += ".";
+  if (!DISPLAY.value.includes(".")) {
+    DISPLAY.value += ".";
   }
 };
 
 // A function to handle when an operator button is clicked.
 const useOp = (operator) => {
-  if (display.value === '-' && operator !== '=') {
+  if (DISPLAY.value === '-' && operator !== '=') {
     return;
   }
-  const currentVal = Number(display.value);
+  const currentVal = Number(DISPLAY.value);
   // If an operator is already set and we are waiting for the next value, just update the operator.
   if (op && awaitingNext) {
     if (operator === '-') {
-      display.value = '-';
+      DISPLAY.value = '-';
       awaitingNext = false;
       return;
     }
@@ -63,15 +63,15 @@ const useOp = (operator) => {
     firstVal = currentVal;
   } else if (op) {
     // If we already have a first number and an operator, perform the calculation.
-    const result = calculate[op](firstVal, currentVal);
+    const result = CALCULATE[op](firstVal, currentVal);
     if (result === "Error") {
-        display.value = "Error";
+        DISPLAY.value = "Error";
         firstVal = null;
         op = null;
         awaitingNext = true;
         return;
     }
-    display.value = String(result);
+    DISPLAY.value = String(result);
     firstVal = result;
   }
   // Set the new operator and flag that we are waiting for the next number.
@@ -84,11 +84,11 @@ const reset = () => {
   firstVal = null;
   op = null;
   awaitingNext = false;
-  display.value = "0";
+  DISPLAY.value = "0";
 };
 
 // Adds an event listener to each button to handle its specific action.
-buttons.forEach((btn) => {
+BUTTONS.forEach((btn) => {
   const { value } = btn.dataset;
   if (!isNaN(value)) {
     btn.addEventListener("click", () => sendNum(value));

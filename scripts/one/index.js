@@ -18,34 +18,34 @@ function reset(count) {
 // A function that prompts the user for a new value to set the count.
 function set(count) {
   // Shows a prompt dialog to get input from the user.
-  const newValue = prompt("Enter the value you'd like to set to the count");
+  const NEW_VALUE = prompt("Enter the value you'd like to set to the count");
   // Checks if the input is not null, is a number, and is not just empty space.
-  if (newValue !== null && !isNaN(newValue) && newValue.trim() !== "") {
+  if (NEW_VALUE !== null && !isNaN(NEW_VALUE) && NEW_VALUE.trim() !== "") {
     // If the input is valid, updates the count display with the new number.
-    count.innerHTML = parseInt(newValue);
+    count.innerHTML = parseInt(NEW_VALUE);
     // Checks if the user entered something, but it wasn't a valid number.
-  } else if (newValue !== null && newValue.trim() !== "") {
+  } else if (NEW_VALUE !== null && NEW_VALUE.trim() !== "") {
     // If the input is invalid, shows an alert message.
     alert("Please enter a valid number.");
   }
 }
 
 // Selects the increment button from the HTML document.
-const incrementButton = document.querySelector("#increment");
+const INCREMENT_BUTTON = document.querySelector("#increment");
 // Selects the decrement button from the HTML document.
-const decrementButton = document.querySelector("#decrement");
+const DECREMENT_BUTTON = document.querySelector("#decrement");
 // Selects the reset button from the HTML document.
-const resetButton = document.querySelector("#reset");
+const RESET_BUTTON = document.querySelector("#reset");
 // Selects the set button from the HTML document.
-const setButton = document.querySelector("#set");
+const SET_BUTTON = document.querySelector("#set");
 // Selects the element that displays the count.
-const count = document.querySelector("#count");
+const COUNT = document.querySelector("#count");
 
 // When the increment button is clicked, the increment function will execute.
-incrementButton.addEventListener("click", () => increment(count));
+INCREMENT_BUTTON.addEventListener("click", () => increment(COUNT));
 // When the decrement button is clicked, the decrement function will execute.
-decrementButton.addEventListener("click", () => decrement(count));
+DECREMENT_BUTTON.addEventListener("click", () => decrement(COUNT));
 // When the reset button is clicked, the reset function will execute.
-resetButton.addEventListener("click", () => reset(count));
+RESET_BUTTON.addEventListener("click", () => reset(COUNT));
 // When the set button is clicked, the set function will execute.
-setButton.addEventListener("click", () => set(count));
+SET_BUTTON.addEventListener("click", () => set(COUNT));
