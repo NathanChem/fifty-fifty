@@ -10,6 +10,12 @@ const GRID_HEIGHT_SLIDER = document.querySelector("#grid-height");
 const WIDTH_VALUE = document.querySelector("#width-value");
 const HEIGHT_VALUE = document.querySelector("#height-value");
 
+// Mobile controls
+const BTN_UP = document.querySelector("#btn-up");
+const BTN_DOWN = document.querySelector("#btn-down");
+const BTN_LEFT = document.querySelector("#btn-left");
+const BTN_RIGHT = document.querySelector("#btn-right");
+
 let score = 0;
 let highScore = localStorage.getItem("snakeHighScore") || 0;
 let snakePosition = [];
@@ -44,7 +50,11 @@ function updateStatus() {
 
 function updatePauseButton() {
   if (!PAUSE_BUTTON) return;
-  PAUSE_BUTTON.textContent = gameState === "paused" ? "Resume" : "Pause";
+  if (gameState === "paused") {
+    PAUSE_BUTTON.textContent = "Resume";
+  } else {
+    PAUSE_BUTTON.textContent = "Pause";
+  }
 }
 
 function initializeGame() {
@@ -170,7 +180,7 @@ function checkCollisions(newHead) {
 }
 
 function eatFood() {
-  score += 10;
+  score += 1;
   updateScoreDisplay();
   generateFood();
 }
@@ -196,6 +206,38 @@ function render() {
   // Render food
   const foodIndex = getCellIndex(foodPosition.x, foodPosition.y);
   cells[foodIndex].classList.add("food");
+}
+
+function handleDirectionInput(newDirection) {
+  // Start game on first arrow key press
+  if (gameState === "waiting") {
+    const opposites = { up: "down", down: "up", left: "right", right: "left" };
+    if (opposites[newDirection] !== direction) {
+      directionQueue.push(newDirection);
+    }
+    gameState = "playing";
+    updateStatus();
+    gameInterval = setInterval(gameLoop, GAME_SPEED);
+    return;
+  }
+
+  if (gameState !== "playing") return;
+
+  // Add to direction queue (limit queue size to prevent overflow)
+  if (directionQueue.length < 2) {
+    const lastDirection =
+      directionQueue.length > 0
+        ? directionQueue[directionQueue.length - 1]
+        : direction;
+    const opposites = { up: "down", down: "up", left: "right", right: "left" };
+
+    if (
+      opposites[newDirection] !== lastDirection &&
+      newDirection !== lastDirection
+    ) {
+      directionQueue.push(newDirection);
+    }
+  }
 }
 
 function handleInput(event) {
@@ -234,35 +276,7 @@ function handleInput(event) {
   const newDirection = directionMap[key];
   if (!newDirection) return;
 
-  // Start game on first arrow key press
-  if (gameState === "waiting") {
-    const opposites = { up: "down", down: "up", left: "right", right: "left" };
-    if (opposites[newDirection] !== direction) {
-      directionQueue.push(newDirection);
-    }
-    gameState = "playing";
-    updateStatus();
-    gameInterval = setInterval(gameLoop, GAME_SPEED);
-    return;
-  }
-
-  if (gameState !== "playing") return;
-
-  // Add to direction queue (limit queue size to prevent overflow)
-  if (directionQueue.length < 2) {
-    const lastDirection =
-      directionQueue.length > 0
-        ? directionQueue[directionQueue.length - 1]
-        : direction;
-    const opposites = { up: "down", down: "up", left: "right", right: "left" };
-
-    if (
-      opposites[newDirection] !== lastDirection &&
-      newDirection !== lastDirection
-    ) {
-      directionQueue.push(newDirection);
-    }
-  }
+  handleDirectionInput(newDirection);
 }
 
 function gameLoop() {
@@ -353,6 +367,39 @@ if (GRID_HEIGHT_SLIDER) {
     if (HEIGHT_VALUE) HEIGHT_VALUE.textContent = newHeight;
     GRID_DIMENSION[1] = newHeight;
     startGame();
+  });
+}
+
+// Mobile control event listeners
+if (BTN_UP) {
+  BTN_UP.addEventListener("click", () => handleDirectionInput("up"));
+  BTN_UP.addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    handleDirectionInput("up");
+  });
+}
+
+if (BTN_DOWN) {
+  BTN_DOWN.addEventListener("click", () => handleDirectionInput("down"));
+  BTN_DOWN.addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    handleDirectionInput("down");
+  });
+}
+
+if (BTN_LEFT) {
+  BTN_LEFT.addEventListener("click", () => handleDirectionInput("left"));
+  BTN_LEFT.addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    handleDirectionInput("left");
+  });
+}
+
+if (BTN_RIGHT) {
+  BTN_RIGHT.addEventListener("click", () => handleDirectionInput("right"));
+  BTN_RIGHT.addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    handleDirectionInput("right");
   });
 }
 

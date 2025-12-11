@@ -65,3 +65,71 @@ button:active {
   margin-bottom: 10px;
   overflow-x: auto;
 }
+
+.buttons {
+  display: flex;
+  width: 100%;
+  gap: 5px;
+}
+
+#equals {
+  width: 100%;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  header {
+    padding: 1rem;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  #calculator {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  button {
+    font-size: 1.5rem;
+    width: calc((100% - 15px) / 4);
+    height: 45px;
+  }
+
+  #display {
+    height: 60px;
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 0.5rem;
+  }
+
+  a svg {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .container {
+    padding: 0 0.5rem;
+  }
+
+  #calculator {
+    padding: 0.5rem;
+  }
+
+  button {
+    font-size: 1.2rem;
+    width: calc((100% - 15px) / 4);
+    height: 40px;
+  }
+
+  #display {
+    height: 50px;
+    font-size: 1.2rem;
+    padding: 8px;
+  }
+}

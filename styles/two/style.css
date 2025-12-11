@@ -78,3 +78,79 @@ select {
   border: 1px solid black;
   cursor: pointer;
 }
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  header {
+    padding: 1rem;
+  }
+
+  #clicker {
+    width: 90vw;
+    max-width: 500px;
+    height: 200px;
+  }
+
+  #clicker p {
+    font-size: 36px;
+  }
+
+  .results {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  #timer-display {
+    font-size: 20px;
+  }
+
+  #reset {
+    padding: 8px 16px;
+    font-size: 16px;
+  }
+
+  select {
+    padding: 8px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 0.5rem;
+  }
+
+  a svg {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  #clicker {
+    width: 95vw;
+    height: 180px;
+  }
+
+  #clicker p {
+    font-size: 28px;
+  }
+
+  .results {
+    gap: 10px;
+  }
+
+  #timer-display {
+    font-size: 18px;
+    min-width: 60px;
+  }
+
+  #reset {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  select {
+    padding: 6px;
+    font-size: 14px;
+  }
+}

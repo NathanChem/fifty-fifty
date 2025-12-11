@@ -51,18 +51,19 @@ button:active {
 
 #grid {
   display: grid;
-  gap: 5px;
+  gap: 2px;
 }
 
 .cell {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
+  width: 35px;
+  height: 35px;
+  border-radius: 6px;
   background-color: rgb(221, 221, 221);
 }
 
 .snake-head {
   background-color: green;
+  border-radius: 50%;
   width: 100%;
   height: 100%;
 }
@@ -70,12 +71,14 @@ button:active {
 .snake-body {
   background-color: rgb(96, 138, 34);
   width: 100%;
+  border-radius: 0;
   height: 100%;
 }
 
 .food {
   background-color: rgb(161, 95, 32);
   width: 100%;
+  border-radius: 0;
   height: 100%;
 }
 
@@ -167,10 +170,6 @@ input:checked + .slider:before {
   user-select: none;
 }
 
-#grid-settings summary:hover {
-  color: #4caf50;
-}
-
 .slider-container {
   margin: 15px 0;
 }
@@ -214,4 +213,117 @@ input:checked + .slider:before {
   background: #4caf50;
   cursor: pointer;
   border: none;
+}
+
+/* Mobile Controls */
+#mobile-controls {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin: 15px 0;
+}
+
+.control-row {
+  display: flex;
+  gap: 5px;
+}
+
+.arrow-btn {
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  border: none;
+  border-radius: 10px;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  transition: background-color 0.15s, transform 0.1s;
+}
+
+.arrow-btn:hover {
+  background-color: #45a049;
+}
+
+.arrow-btn:active {
+  background-color: #3d8b40;
+  transform: scale(0.95);
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+  #mobile-controls {
+    display: flex;
+  }
+
+  .cell {
+    width: 25px;
+    height: 25px;
+    border-radius: 4px;
+  }
+
+  #grid {
+    gap: 2px;
+  }
+
+  .container {
+    padding: 10px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .buttons button {
+    width: 100%;
+  }
+
+  #fun-switch {
+    justify-content: center;
+  }
+
+  #grid-settings {
+    width: 90%;
+  }
+
+  #status {
+    font-size: 14px;
+  }
+
+  #score {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 400px) {
+  .arrow-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+
+  .cell {
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+  }
+
+  #grid {
+    gap: 1px;
+  }
+}
+
+/* Prevent text selection on game elements */
+#grid,
+#mobile-controls,
+.buttons {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }

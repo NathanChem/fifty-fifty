@@ -50,3 +50,49 @@ button {
 button:active {
   transform: scale(0.95);
 }
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  header {
+    padding: 1rem;
+  }
+
+  #count {
+    font-size: 4rem;
+  }
+
+  button {
+    font-size: 2rem;
+    width: 60px;
+    height: 60px;
+  }
+
+  .wbutton {
+    width: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 0.5rem;
+  }
+
+  a svg {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  #count {
+    font-size: 3rem;
+  }
+
+  button {
+    font-size: 1.5rem;
+    width: 50px;
+    height: 50px;
+  }
+
+  .wbutton {
+    width: 100px;
+  }
+}
