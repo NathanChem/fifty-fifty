@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="../../styles/four/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div id="back-button">
+        <a href="../../index.html"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-chevron-left-icon lucide-chevron-left"
+          >
+            <path d="m15 18-6-6 6-6" />
+          </svg>
+        </a>
+      </div>
+    </header>
+    <div class="container">
+      <h2 id="score">0</h2>
+      <p id="status">Press any arrow key to start</p>
+      <div id="grid"></div>
+      <div class="buttons">
+        <button id="restart">Restart</button>
+        <button id="pause">Pause</button>
+        <div id="fun-switch">
+          <label class="switch">
+            <input type="checkbox" id="fun-mode" />
+            <span class="slider round"></span>
+          </label>
+          <span>Fun Mode</span>
+        </div>
+      </div>
+      <details id="grid-settings">
+        <summary>Grid Settings</summary>
+        <div class="slider-container">
+          <label for="grid-width"
+            >Width: <span id="width-value">10</span></label
+          >
+          <input type="range" id="grid-width" min="5" max="20" value="10" />
+        </div>
+        <div class="slider-container">
+          <label for="grid-height"
+            >Height: <span id="height-value">10</span></label
+          >
+          <input type="range" id="grid-height" min="5" max="20" value="10" />
+        </div>
+      </details>
+    </div>
+    <script src="../../scripts/four/index.js"></script>
+  </body>
+</html>
