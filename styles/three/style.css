@@ -58,6 +58,7 @@ button:active {
   height: 70px;
   background: white;
   border-radius: 10px;
+  border: 1px solid #ccc;
   text-align: right;
   padding: 10px;
   font-size: 2rem;
