@@ -1,0 +1,145 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 1.6;
+  font-family: "Quicksand", sans-serif;
+  user-select: none;
+}
+
+header {
+  padding: 2rem;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Responsive cell sizing (smaller than Snake by default) */
+:root {
+  --cell-size: clamp(16px, 3vw, 30px);
+}
+
+#grid {
+  display: grid;
+  gap: 6px; /* larger gap between cells */
+  /* set columns/rows using the responsive cell size */
+  grid-template-columns: repeat(10, var(--cell-size));
+  grid-auto-rows: var(--cell-size);
+  padding: 6px;
+  background: transparent;
+}
+
+.game-wrap {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.side-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  border-radius: 6px;
+  background-color: rgb(221, 221, 221);
+}
+
+/* Make Tetris blocks all the same color to match Snake theme */
+.tetris-i,
+.tetris-o,
+.tetris-t,
+.tetris-s,
+.tetris-z,
+.tetris-j,
+.tetris-l {
+  background-color: rgb(96, 138, 34); /* same as snake body */
+}
+
+/* Tetris Piece Colors */
+.tetris-i {
+  background-color: #00f0f0;
+}
+
+.tetris-o {
+  background-color: #f0f000;
+}
+
+.tetris-t {
+  background-color: #a000f0;
+}
+
+.tetris-s {
+  background-color: #00f000;
+}
+
+.tetris-z {
+  background-color: #f00000;
+}
+
+.tetris-j {
+  background-color: #0000f0;
+}
+
+.tetris-l {
+  background-color: #f0a000;
+}
+
+#next-container h3 {
+  margin: 0 0 6px 0;
+  font-size: 14px;
+}
+
+#next-grid {
+  display: grid;
+  gap: 6px; /* match main grid gap */
+  grid-template-columns: repeat(4, var(--cell-size));
+  grid-auto-rows: var(--cell-size);
+  padding: 6px;
+  background: transparent;
+}
+
+#status {
+  font-size: 14px;
+  color: #666;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+}
+
+/* Use snake-like button appearance for consistency */
+.buttons button {
+  background-color: rgb(221, 221, 221);
+  color: #222;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* Responsive layout: stack on small screens */
+@media (max-width: 720px) {
+  .game-wrap {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #grid,
+  #next-grid {
+    transform-origin: top left;
+  }
+}
