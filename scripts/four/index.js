@@ -1,6 +1,6 @@
 const GRID = document.querySelector("#grid");
 let GRID_DIMENSION = [10, 10]; // Changed from const to let
-let GAME_SPEED = 200; // milliseconds between moves
+let GAME_SPEED = 300; // milliseconds between moves
 const STATUS = document.querySelector("#status");
 const RESTART_BUTTON = document.querySelector("#restart");
 const PAUSE_BUTTON = document.querySelector("#pause");
@@ -61,6 +61,7 @@ function initializeGame() {
   // Reset game state - position snake based on grid size
   const startX = Math.min(2, GRID_DIMENSION[0] - 3);
   const startY = Math.min(1, GRID_DIMENSION[1] - 2);
+  GAME_SPEED = 300;
   snakePosition = [
     { x: startX, y: startY },
     { x: startX - 1, y: startY },
@@ -334,9 +335,44 @@ function toggleFunMode() {
   funMode = !funMode;
 }
 
-// Event listeners
-document.addEventListener("keydown", handleInput);
+function faster() {
+  // Increase speed by reducing GAME_SPEED, but not below a certain threshold
+  GAME_SPEED = Math.max(50, GAME_SPEED * 0.75);
+  if (gameState === "playing") {
+    clearInterval(gameInterval);
+    gameInterval = setInterval(gameLoop, GAME_SPEED);
+  }
+}
 
+function slower() {
+  // Decrease speed by increasing GAME_SPEED, but not above a certain threshold
+  GAME_SPEED = Math.min(1000, GAME_SPEED * 1.25);
+  if (gameState === "playing") {
+    clearInterval(gameInterval);
+    gameInterval = setInterval(gameLoop, GAME_SPEED);
+  }
+}
+
+// Event listeners
+let shiftHeld = false;
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Shift") {
+    event.preventDefault();
+    faster();
+    shiftHeld = true; // Set shiftHeld to true when Shift is pressed
+  }
+
+  handleInput(event);
+});
+document.addEventListener("keyup", (event) => {
+  if (event.key === "Shift") {
+    // Check for Shift key release
+    event.preventDefault();
+    slower();
+    shiftHeld = false;
+  }
+});
 if (RESTART_BUTTON) {
   RESTART_BUTTON.addEventListener("click", startGame);
 }

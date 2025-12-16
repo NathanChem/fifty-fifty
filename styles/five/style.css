@@ -11,6 +11,34 @@ header {
   padding: 2rem;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a svg {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+h2 {
+  font-size: 48px;
+  font-weight: 700;
+}
+
+button {
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: scale 0.1s ease-in-out;
+}
+
+button:active {
+  scale: 0.95;
+}
+
 .container {
   margin: 0 auto;
   max-width: 1200px;
@@ -20,7 +48,6 @@ header {
   align-items: center;
   gap: 15px;
 }
-
 /* Responsive cell sizing (smaller than Snake by default) */
 :root {
   --cell-size: clamp(16px, 3vw, 30px);
